@@ -3,3 +3,20 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+svg {
+  width: 28px;
+  height: 19px;
+  margin-right: 5px;
+  fill: #F0f0f0;
+}
+
+.is-high-score {
+  fill: #ffc657;
+  animation: grow 0.35s ease-in-out;
+  transform-origin: 50% 50%;
+}
+
+@keyframes grow {
+  50% {transform: scale(1.4) rotate(-3deg); }
+}

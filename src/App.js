@@ -4,7 +4,7 @@ import Header from './components/Header';
 import Player from './components/Player';
 import AddPlayerForm from './components/AddPlayerForm';
 
-class App extends React.Component {
+class App extends Component {
 
     state = {
         players: [   
@@ -53,7 +53,6 @@ class App extends React.Component {
         });
     }
 
-
     handleRemovePlayer = (id) => {
         this.setState( prevState => {
             return {
@@ -62,7 +61,19 @@ class App extends React.Component {
         });
     }
 
+    getHighScore = () => {
+        const scores = this.state.players.map(player => player.score);
+        const highScore = Math.max(...scores);
+        if(highScore) {
+            return highScore;
+        }
+        return null;
+    }
+    
     render() {
+
+        const highScore = this.getHighScore();
+
         return (
             <div className="scoreboard">
                 <Header 
@@ -77,6 +88,7 @@ class App extends React.Component {
                         id={player.id}
                         key={player.id} 
                         index={index}
+                        isHighScore={highScore === player.score}
                         removePlayer={this.handleRemovePlayer}
                         changeScore={this.handleScoreChange}
                     />
